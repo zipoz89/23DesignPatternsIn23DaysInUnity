@@ -1,4 +1,4 @@
 
 ![](observerDemo.gif)
 
-![](observer.jpg)
+![](Observer.jpg)
