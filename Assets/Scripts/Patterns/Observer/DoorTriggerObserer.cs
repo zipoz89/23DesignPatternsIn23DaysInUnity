@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TriggerDoorController : MonoBehaviour
+public class DoorTriggerObserer : MonoBehaviour
 {
     [SerializeField] private Animator[] triggers = null;
     [SerializeField] private bool isActive = false;
