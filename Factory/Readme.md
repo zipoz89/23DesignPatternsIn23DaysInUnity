@@ -1,1 +1,4 @@
-temp
+
+![](FactoryPattern.gif)
+
+![](Factory.jpg)
