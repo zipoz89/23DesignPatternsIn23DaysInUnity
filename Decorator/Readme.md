@@ -1,0 +1,4 @@
+
+![](DecoratorPattern.gif)
+
+![](Decorator.jpg)
