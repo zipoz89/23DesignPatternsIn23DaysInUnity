@@ -2,61 +2,71 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Atribute
+public class BasicAtribute
 {
-    protected float atributeBaseValue;
-    protected float multiplier;
+    protected float baseValue;
+    protected float modifier;
 
 
-    public Atribute(float atributeValue, float multiplier = 0) {
-        this.atributeBaseValue = atributeValue;
-        this.multiplier = multiplier;
+    public BasicAtribute(float atributeValue, float multiplier = 0) {
+        this.baseValue = atributeValue;
+        this.modifier = multiplier;
+    }
+    public virtual float GetModifiedValue() {
+        if (modifier != 0)
+            return baseValue *= modifier;
+        else return baseValue;
     }
 
-    public float BaseValue() { return atributeBaseValue; }
-    public void SetValue(float value) { atributeBaseValue = value; }
-    public float BaseMultipier() { return multiplier; }
+    public float BaseValue() { return baseValue; }
+    public void SetBaseValue(float value) { baseValue = value; }
+    public float Modifier() { return modifier; }
 
-    public void SetMultipier(float value) { multiplier = value; }
+    public void SetModifier(float value) { modifier = value; }
 }
 
-public class RawBonus : Atribute {
-    public RawBonus(float atributeValue, float multiplier) : base(atributeValue, multiplier) { }
+public class TemporaryBonus : BasicAtribute {
+    public TemporaryBonus(float atributeValue, float multiplier) : base(atributeValue, multiplier) { }
 
 }
 
-public class FinalBonus : Atribute {
+public class FinalBonus : BasicAtribute {
     public FinalBonus(float atributeValue, float multiplier) : base(atributeValue, multiplier) { }
 
 }
 
-public class FinalAtribute : Atribute {
-    List<RawBonus> rawBonuses = new List<RawBonus>();
+public class Atribute : BasicAtribute {
+    Dictionary<string,TemporaryBonus> temporaryBonuses = new Dictionary<string, TemporaryBonus>();
     List<FinalBonus> finalBonuses = new List<FinalBonus>();
 
     private float finalValue;
 
-    public FinalAtribute(float value) : base(value) {
+    public Atribute(float value) : base(value) {
         finalValue = value;
 
     }
 
-    public void addRawBonus(RawBonus bonus) {
-        rawBonuses.Add(bonus);
+    public void addTemporaryBonus(string id,TemporaryBonus bonus) {
+        temporaryBonuses.Add(id,bonus);
+    }
+
+    public void removeTemporaryBonus(string id, TemporaryBonus bonus) {
+        temporaryBonuses.Remove(id);
     }
 
     public void addFianlBonus(FinalBonus bonus) {
         finalBonuses.Add(bonus);
     }
 
-    public float calculateValue() {
+    public override float GetModifiedValue() {
         finalValue = BaseValue();
+
         float rawBonusValue = 0;
         float rawBonusMultiplier = 0;
 
-        foreach (RawBonus r in rawBonuses) {
-            rawBonusValue += r.BaseValue();
-            rawBonusMultiplier += r.BaseMultipier();
+        foreach (KeyValuePair<string, TemporaryBonus> t in temporaryBonuses) {
+            rawBonusValue += t.Value.BaseValue();
+            rawBonusMultiplier += t.Value.Modifier();
         }
 
         finalValue += rawBonusValue;
@@ -67,7 +77,7 @@ public class FinalAtribute : Atribute {
 
         foreach (FinalBonus f in finalBonuses) {
             finalBonusValue += f.BaseValue();
-            finalBonusMultiplier += f.BaseMultipier();
+            finalBonusMultiplier += f.Modifier();
         }
 
         finalValue += finalBonusValue;
