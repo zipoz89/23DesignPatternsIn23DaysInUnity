@@ -1,0 +1,3 @@
+![](CompositePatern.gif)
+
+![](Composite.jpg)
