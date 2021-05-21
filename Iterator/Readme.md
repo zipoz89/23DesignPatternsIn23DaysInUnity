@@ -1,0 +1,4 @@
+
+![](IteratorPattern.gif)
+
+![](Iterator.jpg)
