@@ -1,0 +1,4 @@
+
+![](ProxyPattern.gif)
+
+![](Proxy.jpg)
