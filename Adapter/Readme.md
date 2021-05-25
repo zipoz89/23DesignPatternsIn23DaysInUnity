@@ -1,0 +1,3 @@
+![](AdapterPattern.gif)
+
+![](Adapter.jpg)
