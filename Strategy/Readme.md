@@ -1,0 +1,4 @@
+
+![](StrategyPattern.gif)
+
+![](Strategy.jpg)
