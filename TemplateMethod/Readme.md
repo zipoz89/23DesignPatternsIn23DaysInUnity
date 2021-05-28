@@ -1,0 +1,4 @@
+
+![](TemplateMethodPattern.gif)
+
+![](TemplateMethod.jpg)
