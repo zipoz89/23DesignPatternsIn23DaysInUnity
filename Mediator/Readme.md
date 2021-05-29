@@ -1,0 +1,3 @@
+![](MediatorPattern.gif)
+
+![](Mediator.jpg)
