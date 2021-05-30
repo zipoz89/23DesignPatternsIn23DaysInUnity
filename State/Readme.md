@@ -1,0 +1,3 @@
+![](StatePattern.gif)
+
+![](State.jpg)
