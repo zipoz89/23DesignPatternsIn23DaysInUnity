@@ -1,9 +1,3 @@
-![](g1.png)
-![](g2png)
-![](g3png)
-![](i1.png)
-![](i2.png)
-![](i3.png)
-![](d1.png)
-![](d1.png)
-![](d1.png)
+![](AdapterPattern.gif)
+![](Adapter.jpg)
+
